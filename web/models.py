@@ -39,7 +39,7 @@ def notify_server_config_changed(sender, instance, **kwargs):
         makes a POST request on the WAMP-HTTP bridge, allowing us to
         make a WAMP publication from Django.
     """
-    requests.post("http://127.0.0.1:8080/notify",
+    requests.post("http://127.0.0.1:8081/notify",
                   json={
                       'topic': 'clientconfig.' + instance.ip,
                       'args': [model_to_dict(instance)]

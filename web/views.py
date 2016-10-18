@@ -16,6 +16,7 @@ from django.forms.models import model_to_dict
 def clients(request):
     """ Retrieve a client config from DB and send it back to the client """
     ip = request.POST.get('ip', None)
+    print ip
     try:
         client, created = Client.objects.get_or_create(ip=ip)
         data = model_to_dict(client)

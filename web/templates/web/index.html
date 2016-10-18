@@ -12,37 +12,31 @@
 
     <!--
         The JS lib allowing to speak WAMP.
-
-        Here I'm assuming we are using a browser with Websocket support.
-        It's possible to fall back to flash or long poll, but that
-        would require additional dependencies.
+        Here I'm assuming we are using a browser with Websocket support. It's
+        possible to fallback on flash or long poll, but that would require
+        additional dependencies.
     -->
     <script src="https://autobahn.s3.amazonaws.com/autobahnjs/latest/autobahn.min.jgz"
            type="text/javascript"></script>
 
 
-    <!-- All our client code, inlined for easy reading -->
+    <!-- All our client code, inlined to easy reading -->
     <script type="text/javascript">
-
-      /* When the page is loaded, run our code. */
+      /* CWhen the page is loaded, run our code. */
       window.addEventListener("load", function(){
-
         /* Connection configuration to our WAMP router */
         var connection = new autobahn.Connection({
            url: 'ws://127.0.0.1:8081/ws',
            realm: 'realm1'
         });
-
         /* When the connection is opened, execute this code */
         connection.onopen = function(session) {
-
+          console.log("connected!");
           var clients = document.getElementById("clients");
-
           /* When we receive the 'clientstats' event, run this function */
           session.subscribe('clientstats', function(args){
             var stats = args[0];
             var serverNode = document.getElementById(stats.ip);
-
             /*
                 Create a LI containing a H2 and a DL for this client if
                 it's not in the page already.
@@ -54,7 +48,6 @@
                 serverNode.appendChild(document.createElement("dl"));
                 serverNode.firstChild.innerHTML = stats.name + " (" + stats.ip + ")";
                 clients.appendChild(serverNode);
-
                 // Hide the informations for this machine if it's been
                 // disabled.
                 session.subscribe('clientconfig.' + stats.ip, function(args){
@@ -64,16 +57,13 @@
                         serverNode.className = "hide";
                     }
                 });
-
             }
-
             // Reset the client's LI content
             serverNode.className = "";
             var dl = serverNode.lastChild;
             while (dl.hasChildNodes()) {
                 dl.removeChild(dl.lastChild);
             }
-
             // If we got CPU data, display it
             if (stats.cpus){
                 var cpus = document.createElement("dt");
@@ -85,7 +75,6 @@
                     dl.appendChild(cpu);
                 };
             }
-
             // If we got disk usage data, display it
             if (stats.disks){
                 var disks = document.createElement("dt");
@@ -97,7 +86,6 @@
                     dl.appendChild(disk);
                 };
             }
-
             // If we got memory data, display it
             if (stats.memory){
                 var memory = document.createElement("dt");
@@ -107,14 +95,10 @@
                 memVal.innerHTML = stats.memory;
                 dl.appendChild(memVal);
             }
-
           });
-
         };
-
         // Open the WAMP connection with the router.
         connection.open();
-
       });
     </script>
 
