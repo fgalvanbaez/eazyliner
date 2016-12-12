@@ -6,6 +6,6 @@ from django.contrib import admin
 # Register your models here.
 
 
-from web.models import Client
+from data_rest.models import Client
 
 admin.site.register(Client)

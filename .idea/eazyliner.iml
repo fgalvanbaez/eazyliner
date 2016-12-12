@@ -22,7 +22,6 @@
       <list>
         <option value="$MODULE_DIR$/templates" />
         <option value="$MODULE_DIR$/web/templates" />
-        <option value="$MODULE_DIR$/web/templates/web" />
       </list>
     </option>
   </component>

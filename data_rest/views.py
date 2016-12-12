@@ -5,7 +5,7 @@ import json
 
 
 from django.http import HttpResponse
-from web.models import Client
+from data_rest.models import Client
 from django.views.decorators.csrf import csrf_exempt
 from django.forms.models import model_to_dict
 

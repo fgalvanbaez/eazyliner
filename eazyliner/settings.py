@@ -30,18 +30,37 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+ADMINS = [
+    ('Francisco A. Galván Báez', 'fgalvan@outlook.com'),
+]
+
+MANAGERS = ADMINS
+
+SEND_BROKEN_LINK_EMAILS = False
+
 
 # Application definition
-
-INSTALLED_APPS = [
+PREREQ_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'web',
+
 ]
+
+THIRD_PARTY_APPS = [
+    'djangobower',
+    'rest_framework'
+]
+
+PROJECT_APPS = [
+    'data_rest',
+]
+
+INSTALLED_APPS = PREREQ_APPS + THIRD_PARTY_APPS + PROJECT_APPS
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -51,6 +70,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    #Custom middleware
+
 ]
 
 ROOT_URLCONF = 'eazyliner.urls'
@@ -121,4 +143,60 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
+#Statics comunes para varias apps
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static-common"),
+    #os.path.join(BASE_DIR, "mediaroot"),
+]
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'djangobower.finders.BowerFinder',
+]
+
+#STATIC_ROOT = os.path.join(BASE_DIR, 'staticroot')
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'mediaroot')
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+
+
+
+#BOWER
+BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'bower_components')
+#BOWER_PATH = '../venv_eazyliner/lib/python2.7/site-packages/djangobower/bower'
+BOWER_INSTALLED_APPS = [
+    'jquery',
+    'iron-flex-layout',
+    'iron-icon',
+    'iron-icons',
+    'iron-iconset-svg',
+    'iron-meta',
+    'webcomponentsjs',
+    'paper-drawer-panel',
+    "paper-header-panel", #: "PolymerElements/paper-header-panel",
+    "paper-item", #: "PolymerElements/paper-item",
+    "paper-material", #: "PolymerElements/paper-material",
+    "paper-menu", #: "PolymerElements/paper-menu",
+    "paper-toolbar", #: "PolymerElements/paper-toolbar",
+    "paper-dialog", #: "PolymerElements/paper-dialog",
+    "paper-input", #: "PolymerElements/paper-input",
+    "paper-button", #: "PolymerElements/paper-button",
+    "paper-icon-button", #: "PolymerElements/paper-icon-button",
+    "paper-card", #: "PolymerElements/paper-card",
+
+    "iron-icons", #: "PolymerElements/iron-icons",
+    "iron-form", #: "PolymerElements/iron-form",
+    "iron-ajax", #: "PolymerElements/iron-ajax",
+    "iron-flex-layout", #: "PolymerElements/iron-flex-layout",
+
+    "paper-date-picker", #: "bendavis78/paper-date-picker"
+]
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        # 'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}

@@ -4,7 +4,7 @@
 """eazyliner URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/1.10/topics/http/urls/
+    dj  https://docs.djangoproject.com/en/1.10/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -19,16 +19,18 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.views.generic import TemplateView
-from web.views import clients
+from data_rest.views import clients
 
 
 urlpatterns = [
 
     url(r'^admin/', admin.site.urls),
 
-    url(r'^clients/$', clients),
+    #url(r'^clients/$', clients),
 
-    url(r'^$', TemplateView.as_view(template_name='web/index.html'), name='web_index'),
+    url(r'^$', TemplateView.as_view(template_name='index.html'), name='web_home'),
+
+    #url(r'^polymer_app', TemplateView.as_view(template_name='polymer_app/index.html'), name='polymer_app_index'),
 ]
 
 
