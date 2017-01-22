@@ -21,7 +21,8 @@
     <option name="TEMPLATE_FOLDERS">
       <list>
         <option value="$MODULE_DIR$/templates" />
-        <option value="$MODULE_DIR$/web/templates" />
+        <option value="$MODULE_DIR$/data_rest/templates" />
+        <option value="$MODULE_DIR$/polymer_app/templates" />
       </list>
     </option>
   </component>

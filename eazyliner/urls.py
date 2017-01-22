@@ -28,7 +28,9 @@ urlpatterns = [
 
     #url(r'^clients/$', clients),
 
-    url(r'^$', TemplateView.as_view(template_name='index.html'), name='web_home'),
+    #url(r'^$', TemplateView.as_view(template_name='index.html'), name='web_home'),
+
+    url(r'^', TemplateView.as_view(template_name='index.html'), name='web_home'),
 
     #url(r'^polymer_app', TemplateView.as_view(template_name='polymer_app/index.html'), name='polymer_app_index'),
 ]

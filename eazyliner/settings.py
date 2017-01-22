@@ -146,7 +146,7 @@ USE_TZ = True
 #Statics comunes para varias apps
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static-common"),
-    #os.path.join(BASE_DIR, "mediaroot"),
+    os.path.join(BASE_DIR, "bower_components"),
 ]
 
 STATICFILES_FINDERS = [
@@ -163,8 +163,7 @@ MEDIA_URL = '/media/'
 
 
 #BOWER
-BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'bower_components')
-#BOWER_PATH = '../venv_eazyliner/lib/python2.7/site-packages/djangobower/bower'
+BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'static-common')
 BOWER_INSTALLED_APPS = [
     'jquery',
     'iron-flex-layout',
@@ -184,13 +183,26 @@ BOWER_INSTALLED_APPS = [
     "paper-button", #: "PolymerElements/paper-button",
     "paper-icon-button", #: "PolymerElements/paper-icon-button",
     "paper-card", #: "PolymerElements/paper-card",
+    "paper-slider",
 
     "iron-icons", #: "PolymerElements/iron-icons",
     "iron-form", #: "PolymerElements/iron-form",
     "iron-ajax", #: "PolymerElements/iron-ajax",
     "iron-flex-layout", #: "PolymerElements/iron-flex-layout",
+    "iron-component-page",
 
     "paper-date-picker", #: "bendavis78/paper-date-picker"
+
+    "paper-scroll-header-panel",
+
+    "app-layout",
+
+    "polymer-sortablejs",
+
+    "paper-editable-list",
+
+    "PolymerElements/app-layout",
+
 ]
 
 
